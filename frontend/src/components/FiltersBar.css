@@ -1,0 +1,132 @@
+.filters-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Groups */
+
+.filters-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* Search */
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.search-icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.search-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.88rem;
+}
+
+.search-field input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}
+
+/* Layout of filters */
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 14px 12px;
+}
+
+/* Campus chips */
+
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #020617;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.chip:hover {
+  border-color: rgba(148, 163, 184, 0.9);
+}
+
+.chip-active {
+  background: var(--accent-soft);
+  border-color: var(--accent-strong);
+  color: #bbf7d0;
+}
+
+/* Selects */
+
+.filters-group select {
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 0.82rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: #020617;
+  color: var(--text-main);
+  outline: none;
+}
+
+.filters-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft);
+}
+
+/* Toggles */
+
+.toggles-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.toggle input {
+  accent-color: var(--accent);
+}
+
+/* Mobile */
+
+@media (max-width: 960px) {
+  .filters-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

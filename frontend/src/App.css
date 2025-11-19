@@ -1,0 +1,128 @@
+.app-shell {
+  min-height: 100vh;
+  width: 100%;
+  padding: 24px 16px 28px;
+  background: radial-gradient(circle at top, #020617 0, #020617 50%, #000 100%);
+}
+
+/* Constrain content width */
+.header-shell.surface,
+.app-main,
+.app-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Shared panel style */
+.surface {
+  background: var(--bg-panel);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Layout */
+
+.app-main {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.panel {
+  padding: 16px 18px;
+}
+
+.filters-panel {
+  position: sticky;
+  top: 80px;
+}
+
+/* Results */
+
+.results-panel {
+  padding: 16px 18px 18px;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.results-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.results-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Empty-state */
+
+.empty-state {
+  margin-top: 10px;
+  padding: 24px 18px 20px;
+  text-align: center;
+  border-radius: calc(var(--radius-card) - 4px);
+  border: 1px dashed rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.empty-title {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.empty-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Footer */
+
+.app-footer {
+  margin-top: 14px;
+  padding-top: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  opacity: 0.75;
+}
+
+/* Responsive */
+
+@media (max-width: 960px) {
+  .app-shell {
+    padding: 18px 12px 24px;
+  }
+
+  .app-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .filters-panel {
+    position: static;
+  }
+
+  .panel {
+    padding: 14px 12px;
+  }
+}
