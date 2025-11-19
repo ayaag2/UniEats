@@ -1,23 +1,27 @@
-# UNI EATS – Full Project Skeleton
+# UNI EATS – Full Project
 
-This repo contains a **completed React frontend** and **placeholder backend/database**
-folders that follow the UNI EATS requirement analysis.
+UniEats is a web-based platform that allows university students to find student-reviewed restaurants near their campus.
 
-- `frontend/` – fully styled React single-page app (search + filter UI)
-- `backend/` – Flask skeleton with placeholder routes and config
-- `database/` – draft PostgreSQL schema
+This repository contains:
+- A **completed React frontend** for browsing restaurants.
+- Placeholder **backend** structure for future Flask (or similar) APIs.
+- Placeholder **database** folder with a starter PostgreSQL schema.
 
-## Running the frontend
+---
+
+## Repository structure
+
+- `frontend/` – fully styled React single-page app for search + filter UI  
+  - `src/` – React components (Header, FiltersBar, RestaurantCard, RatingsBadge, etc.)
+  - `public/` – static assets
+- `backend/` – placeholder backend folder (to be implemented by the team)
+- `database/` – draft database schema and notes
+
+---
+
+## Frontend – Quick start
 
 ```bash
 cd frontend
 npm install
 npm start
-```
-
-The app will start in development mode at http://localhost:3000.
-
-## Backend & DB
-
-The backend and database folders are intentionally minimal placeholders.
-You can gradually wire the React UI to real Flask endpoints and PostgreSQL models.
