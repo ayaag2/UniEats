@@ -1,4 +1,4 @@
 flask>=3.0.0
 # Add SQLAlchemy, psycopg2-binary, and other dependencies when implementing the backend:
 # SQLAlchemy
-# psycopg2-binary
+psycopg2>=2.9
