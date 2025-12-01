@@ -29,11 +29,11 @@ INSERT INTO cuisine (cuisine_id, name) VALUES
 -- 2. CAMPUS INSERTS (4 items)
 --------------------------------------------------------------------------------
 
-INSERT INTO campus (campus_id, name, address) VALUES
-(1, 'University of Illinois Chicago', '1200 W Harrison St, Chicago, IL 60607'),
-(2, 'Loyola University Chicago', '1032 W Sheridan Rd, Chicago, IL 60660'),
-(3, 'DePaul University - Loop', '1 E Jackson Blvd, Chicago, IL 60604'),
-(4, 'Northwestern University - Evanston', '633 Clark St, Evanston, IL 60208');
+INSERT INTO campus (campus_id, name, address, short_label) VALUES
+(1, 'University of Illinois Chicago', '1200 W Harrison St, Chicago, IL 60607', 'UIC'),
+(2, 'Loyola University Chicago', '1032 W Sheridan Rd, Chicago, IL 60660', 'Loyola'),
+(3, 'DePaul University - Loop', '1 E Jackson Blvd, Chicago, IL 60604', 'DePaul'),
+(4, 'Northwestern University - Evanston', '633 Clark St, Evanston, IL 60208', 'NU');
 
 
 -- 3. RESTAURANT INSERTS (30 items - Ethnic & Budget Focused)
