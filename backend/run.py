@@ -4,6 +4,7 @@ from app.routes.restaurants import restaurants_bp
 from app.routes.cuisine import cuisine_bp
 from app.routes.campuses import campuses_bp
 from app.routes.campusProximity import campusProximity_bp
+from app.routes.userRatings import userRatings_bp
 
 
 
@@ -15,6 +16,7 @@ app.register_blueprint(restaurants_bp, url_prefix="/restaurants")
 app.register_blueprint(cuisine_bp, url_prefix="/cuisine")
 app.register_blueprint(campuses_bp, url_prefix="/campuses")
 app.register_blueprint(campusProximity_bp, url_prefix="/campusProximity")
+app.register_blueprint(userRatings_bp, url_prefix="/userRatings")
 
 
 if __name__ == "__main__":

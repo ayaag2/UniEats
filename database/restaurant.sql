@@ -1,9 +1,6 @@
 -- UNI EATS INITIAL DATA POPULATION (Real Chicago Restaurants & Universities - 30 Restaurants)
 -- Focusing strictly on budget-friendly, ethnic/cultural cuisines near major university campuses.
 
--- Note: We reset all IDs to ensure clean insertion and update the sequences afterwards.
--- This script should be run after creating the schema (alembic upgrade head).
-
 -- 1. CUISINE INSERTS (16 items)
 --------------------------------------------------------------------------------
 
@@ -29,11 +26,11 @@ INSERT INTO cuisine (cuisine_id, name) VALUES
 -- 2. CAMPUS INSERTS (4 items)
 --------------------------------------------------------------------------------
 
-INSERT INTO campus (campus_id, name, address, short_label) VALUES
-(1, 'University of Illinois Chicago', '1200 W Harrison St, Chicago, IL 60607', 'UIC'),
-(2, 'Loyola University Chicago', '1032 W Sheridan Rd, Chicago, IL 60660', 'Loyola'),
-(3, 'DePaul University - Loop', '1 E Jackson Blvd, Chicago, IL 60604', 'DePaul'),
-(4, 'Northwestern University - Evanston', '633 Clark St, Evanston, IL 60208', 'NU');
+INSERT INTO campus (campus_id, name, address) VALUES
+(1, 'University of Illinois Chicago', '1200 W Harrison St, Chicago, IL 60607'),
+(2, 'Loyola University Chicago', '1032 W Sheridan Rd, Chicago, IL 60660'),
+(3, 'DePaul University - Loop', '1 E Jackson Blvd, Chicago, IL 60604'),
+(4, 'Northwestern University - Evanston', '633 Clark St, Evanston, IL 60208');
 
 
 -- 3. RESTAURANT INSERTS (30 items - Ethnic & Budget Focused)
@@ -41,39 +38,39 @@ INSERT INTO campus (campus_id, name, address, short_label) VALUES
 
 INSERT INTO restaurant (restaurant_id, name, price_range, take_out_available, delivery_available, thumbnail_url, cuisine_id) VALUES
 -- UIC Focus (1) & Loop Crossover
-(1, 'Ghareeb Nawaz', '<$5', TRUE, TRUE, 'https://images.weserv.nl/?url=tb-static.uber.com/prod/image-proc/processed_images/eea8b2c9558d629c09fd441334f4239a/fb86662148be855d931b37d6c1e5fcbe.jpeg&w=200&h=150&fit=cover', 10),
-(2, 'Al''s Italian Beef', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=i.ytimg.com/vi/Rj1M6B9f97Q/maxresdefault.jpg&w=200&h=150&fit=cover', 1),
-(3, 'Tandoor Char House', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=https://static.wixstatic.com/media/8df42f_d1b81d8701f4444a80d2994ad8d00542~mv2.jpg/v1/fit/w_2500,h_1330,al_c/8df42f_d1b81d8701f4444a80d2994ad8d00542~mv2.jpg&w=200&h=150&fit=cover', 10),
-(4, 'Tacos el Rey', '<$5', TRUE, TRUE, 'https://images.weserv.nl/?url=https://www.chicagotribune.com/wp-content/uploads/migration/2022/02/01/KHCQSLRSHJAZRMO5T4UTNUCCQQ.jpg&w=200&h=150&fit=cover', 2),
-(5, 'Pho 888', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://tb-static.uber.com/prod/image-proc/processed_images/40b35c9d773b2bb6edc124ed2aec4fde/fb86662148be855d931b37d6c1e5fcbe.jpeg&w=200&h=150&fit=cover', 11),
-(6, 'Naf Naf Grill', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/14f069d2-d687-4c36-8e6f-0c62bffd6c3b.jpg&w=200&h=150&fit=cover', 9),
-(7, 'Jerk Taco Man', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://tb-static.uber.com/prod/image-proc/processed_images/7e1c900a9a6e8128e970a18070bdeabf/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg&w=200&h=150&fit=cover', 16),
-(8, 'Harold''s Chicken Shack', '$5-$10', TRUE, FALSE, 'https://images.weserv.nl/?url=https://treyschowdown.com/wp-content/uploads/2023/01/Harolds-Chicken-Shack-2-Treys-Chow-Down-.jpg&w=200&h=150&fit=cover', 1),
+(1, 'Ghareeb Nawaz', '<$5', TRUE, TRUE, 'https://placehold.co/200x150/008000/FFF?text=INDIAN', 10),
+(2, 'Al''s Italian Beef', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/FF6347/FFF?text=BEEF', 1),
+(3, 'Tandoor Char House', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/DAA520/000?text=INDIAN', 10),
+(4, 'Tacos el Rey', '<$5', TRUE, TRUE, 'https://placehold.co/200x150/0000FF/FFF?text=TACOS', 2),
+(5, 'Pho 888', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/00CED1/000?text=PHO', 11),
+(6, 'Naf Naf Grill', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/228B22/FFF?text=MED', 9),
+(7, 'Jerk Taco Man', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/8B0000/FFF?text=JERK', 16),
+(8, 'Harold''s Chicken Shack', '$5-$10', TRUE, FALSE, 'https://placehold.co/200x150/333333/FFF?text=CHICKEN', 1),
 -- DePaul Loop Focus (3)
-(9, 'Cafecito (Loop)', '<$5', TRUE, FALSE, 'https://images.weserv.nl/?url=https://tb-static.uber.com/prod/image-proc/processed_images/f356a08e945f20cfeee1303ddbc55884/783282f6131ef2258e5bcd87c46aa87e.jpeg&w=200&h=150&fit=cover', 15),
-(10, 'The Halal Guys (Loop)', '<$5', TRUE, TRUE, 'https://images.weserv.nl/?url=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7F9wdogPbHNvfk1q28fPYVbioDXpKGx4-IA&s&w=200&h=150&fit=cover', 9),
-(11, 'Roti Modern Med (Loop)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/23/5d/8d/lamb-salad.jpg?w=500&h=-1&s=1&w=200&h=150&fit=cover', 9),
-(12, 'Lou Malnati''s (Loop)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=https://townsquare.media/site/721/files/2016/05/Lou-Malnatis-Pizza-.jpg?w=780&q=75&w=200&h=150&fit=cover', 4),
-(13, 'Burrito Beach (Loop)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://images.getbento.com/accounts/cd384f184db650fd9cb7d98b78d2b3df/media/images/87392BurritoMagn%C3%83fico-9.jpg?w=1200&fit=max&auto=compress,format&cs=origin&w=200&h=150&fit=cover', 2),
-(14, 'Saigon Sisters (Loop)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=https://static.spotapps.co/spots/51/979565d82c4c2eb04220fe62deeea9/full&w=200&h=150&fit=cover', 11),
-(15, 'Ramen-san (Loop)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=https://storage.googleapis.com/ramensan_bucket/wp-content/uploads/top.jpg&w=200&h=150&fit=cover', 6),
-(16, 'Wow Bao (Loop)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://www.wowbao.com/wp-content/uploads/2024/09/Red-Bao-Portrait.jpg&w=200&h=150&fit=cover', 5),
+(9, 'Cafecito (Loop)', '<$5', TRUE, FALSE, 'https://placehold.co/200x150/5F4B8B/FFF?text=CUBAN', 15),
+(10, 'The Halal Guys (Loop)', '<$5', TRUE, TRUE, 'https://placehold.co/200x150/000000/F0E68C?text=HALAL', 9),
+(11, 'Roti Modern Med (Loop)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/008080/FFF?text=ROTI', 9),
+(12, 'Lou Malnati''s (Loop)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/8B0000/FFF?text=DEEPDISH', 4),
+(13, 'Burrito Beach (Loop)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/228B22/FFF?text=BURRITO', 2),
+(14, 'Saigon Sisters (Loop)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/00CED1/000?text=PHO', 11),
+(15, 'Ramen-san (Loop)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/808080/FFF?text=RAMEN', 6),
+(16, 'Wow Bao (Loop)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/FFA07A/000?text=BAO', 5),
 -- Loyola Focus (2)
-(17, 'Banh Mi & Pho (Uptown)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://tb-static.uber.com/prod/image-proc/processed_images/bbe44a7df5c632f420df7f90c61c7818/268ee1a1296808aa6eae11eb597de84d.jpeg&w=200&h=150&fit=cover', 11),
-(18, 'Ethiopian Diamond', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=https://tb-static.uber.com/prod/image-proc/processed_images/079e4e9d3224000c34d9d87f03debcf2/885ba8620d45ab36746a0e8c7b85ee66.jpeg&w=200&h=150&fit=cover', 12),
-(19, 'Sarpino''s Piz.', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://sarpinosfranchise.com/wp-content/uploads/2023/07/Hotdog-Lifestyle-scaled.jpg&w=200&h=150&fit=cover', 4),
-(20, 'Cheesie''s Pub & Grub', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://media.timeout.com/images/100894147/750/422/image.jpg&w=200&h=150&fit=cover', 1),
-(21, 'Raising Cane''s (Loyola)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/83b88b01-37c1-4c8c-9738-3aecb13d317e.jpg&w=200&h=150&fit=cover', 1),
-(22, 'Tacos y Salsa', '<$5', TRUE, TRUE, 'https://images.weserv.nl/?url=https://chicagoparent.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2024/06/Photo-credit-%40taco_nano.jpg&w=200&h=150&fit=cover', 2),
-(23, 'Felice’s Roman Pizza (Loyola)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=www.chicagotribune.com/wp-content/uploads/migration/2017/10/24/VOBLK7CQTBDCRM5V2YEBKOHWIA.jpg?&w=200&h=150&fit=cover', 4),
-(24, 'Wakamono Sushi (Loyola)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/34/7f/a2/caption.jpg?&w=200&h=150&fit=cover', 6),
-(25, 'Joy Yee Noodles (Uptown)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_1200,q_auto,fl_lossy,dpr_auto,c_fill,f_auto,h_800,g_auto/oqkfnh7bh5uq8vivfjhg&w=200&h=150&fit=cover', 5),
+(17, 'Banh Mi & Pho (Uptown)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/6B8E23/FFF?text=PHO', 11),
+(18, 'Ethiopian Diamond', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/3CB371/FFF?text=ETHIOPIAN', 12),
+(19, 'Sarpino''s Piz.', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/FF4500/FFF?text=PIZZA', 4),
+(20, 'Cheesie''s Pub & Grub', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/B0C4DE/000?text=GRILLED', 1),
+(21, 'Raising Cane''s (Loyola)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/FFD700/000?text=CHICKEN', 1),
+(22, 'Tacos y Salsa', '<$5', TRUE, TRUE, 'https://placehold.co/200x150/FF8C00/FFF?text=TACOS', 2),
+(23, 'Felice’s Roman Pizza (Loyola)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/8B0000/FFF?text=PIZZA', 4),
+(24, 'Wakamono Sushi (Loyola)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/5F9EA0/FFF?text=SUSHI', 6),
+(25, 'Joy Yee Noodles (Uptown)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/8FBC8F/000?text=NOODLES', 5),
 -- Northwestern Focus (4)
-(26, 'Kim''s Korean', '$5-$10', TRUE, FALSE, 'https://images.weserv.nl/?url=s3-media0.fl.yelpcdn.com/bphoto/jFs55wL7KSFbJgDoXZveDg/348s.jpg&w=200&h=150&fit=cover', 13),
-(27, 'Cozy Noodles & Rice (Evanston)', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=tb-static.uber.com/prod/image-proc/processed_images/9d99ce3c6ae648d3df0d7550df95f406/c73ecc27d2a9eaa735b1ee95304ba588.jpeg&w=200&h=150&fit=cover', 7),
-(28, 'Jollibee (Northwest)', '$5-$10', TRUE, TRUE, 'https://images.weserv.nl/?url=a.mktgcdn.com/p/YX9tzBIULjqISYBAYUwbUgiprwXCVqpTP-Bj_JcTDN4/1280x854.jpg&w=200&h=150&fit=cover', 14),
-(29, 'Le Colonial', '$10-$20', TRUE, FALSE, 'https://images.weserv.nl/?url=tb-static.uber.com/prod/image-proc/processed_images/15edb7b934518a73f68b136eaa1b0391/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg&w=200&h=150&fit=cover', 11),
-(30, 'Lao Sze Chuan', '$10-$20', TRUE, TRUE, 'https://images.weserv.nl/?url=s3-media0.fl.yelpcdn.com/bphoto/udQ_8orBMpCGMDwlN3npVA/l.jpg&w=200&h=150&fit=cover', 5);
+(26, 'Kim''s Korean', '$5-$10', TRUE, FALSE, 'https://placehold.co/200x150/FF69B4/FFF?text=KOREAN', 13),
+(27, 'Cozy Noodles & Rice (Evanston)', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/D2B48C/000?text=NOODLES', 7),
+(28, 'Jollibee (Northwest)', '$5-$10', TRUE, TRUE, 'https://placehold.co/200x150/FF8C00/FFF?text=JOLLIBEE', 14),
+(29, 'Le Colonial', '$10-$20', TRUE, FALSE, 'https://placehold.co/200x150/B0E0E6/000?text=VIET', 11),
+(30, 'Lao Sze Chuan', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/A52A2A/FFF?text=SICHUAN', 5);
 
 
 -- 4. CAMPUS PROXIMITY INSERTS (68 items - All <= 2.0 miles)
