@@ -9,7 +9,8 @@ CREATE TABLE cuisine (
 CREATE TABLE campus (
     campus_id  SERIAL PRIMARY KEY,
     name       VARCHAR(120) NOT NULL,
-    address    VARCHAR(255) NOT NULL
+    address    VARCHAR(255) NOT NULL,
+    short_label VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE restaurant (
