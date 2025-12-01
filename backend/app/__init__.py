@@ -1,5 +1,5 @@
 from flask import Flask
-from .routes.restaurants import restaurants_bp
+from .routes.restaurant_param import restaurants_bp
 
 def create_app():
     app = Flask(__name__)

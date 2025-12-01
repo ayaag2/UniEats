@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";  
 import "./App.css";
-import { restaurants } from "./data/restaurants";
-import { campuses } from "./data/campuses";
-import { cuisines } from "./data/cuisines";
-import { campusProximity } from "./data/campusProximity";
+//import { restaurants } from "./data/restaurants";
+//import { campuses } from "./data/campuses";
+// import { cuisines } from "./data/cuisines"; 
+//import { campusProximity } from "./data/campusProximity";
 import { ratings } from "./data/ratings";
 import Header from "./components/Header";
 import FiltersBar from "./components/FiltersBar";
@@ -19,12 +19,48 @@ function App() {
   const [deliveryOnly, setDeliveryOnly] = useState(false);
   const [sortBy, setSortBy] = useState("distance");
 
+  const [cuisines, setCuisines] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
+  const [campuses, setCampuses] = useState([]);
+  const [campusProximity, setCampusProximity] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/cuisine")
+      .then((res) => res.json())
+      .then((data) => setCuisines(data))
+      .catch((err) => console.error("Failed to load cuisines:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/campuses")
+      .then((res) => res.json())
+      .then((data) => setCampuses(data))
+      .catch((err) => console.error("Failed to load campuses:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/restaurants")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched restaurants:", data); //log
+        setRestaurants(data);
+      })
+      .catch((err) => console.error("Failed to load restaurants:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/campusProximity")
+      .then((res) => res.json())
+      .then((data) => setCampusProximity(data))
+      .catch((err) => console.error("Failed to load campusProximity:", err));
+  }, []);
+
   const restaurantWithComputedFields = useMemo(() => {
     return restaurants.map((r) => {
       const proximity = campusProximity.filter(
-        (cp) => cp.restaurantId === r.id
+        (cp) => cp.restaurantid === r.id
       );
-      const restRatings = ratings.filter((rt) => rt.restaurantId === r.id);
+      const restRatings = ratings.filter((rt) => rt.restaurantid === r.id);
       const avgRating =
         restRatings.length === 0
           ? null
@@ -39,8 +75,7 @@ function App() {
             );
 
       const closestCampus =
-        closest &&
-        campuses.find((c) => c.id === closest.campusId);
+        closest && campuses.find((c) => c.id === closest.campusId);
 
       return {
         ...r,
@@ -58,7 +93,7 @@ function App() {
         const query = search.trim().toLowerCase();
         if (query) {
           const cuisineLabel =
-            cuisines.find((c) => c.id === r.cuisineId)?.name || "";
+            cuisines.find((c) => c.id === r.cuisineid)?.name || "";
           const haystack = (r.name + " " + cuisineLabel).toLowerCase();
           if (!haystack.includes(query)) return false;
         }
@@ -66,7 +101,7 @@ function App() {
       })
       .filter((r) => {
         if (selectedCuisine === "all") return true;
-        return r.cuisineId === selectedCuisine;
+        return String(r.cuisineid) === String(selectedCuisine);
       })
       .filter((r) => {
         if (!takeOutOnly && !deliveryOnly) return true;
@@ -77,7 +112,7 @@ function App() {
       .filter((r) => {
         if (selectedCampuses.length === 0) return true;
         const proximities = campusProximity.filter(
-          (cp) => cp.restaurantId === r.id
+          (cp) => cp.restaurantid === r.id
         );
         const campusIds = proximities.map((cp) => cp.campusId);
         return selectedCampuses.some((id) => campusIds.includes(id));
@@ -108,6 +143,10 @@ function App() {
     deliveryOnly,
     selectedCampuses,
     sortBy,
+    cuisines, 
+    restaurants,
+    campuses,
+    campusProximity
   ]);
 
   return (
@@ -119,7 +158,7 @@ function App() {
             search={search}
             onSearchChange={setSearch}
             campuses={campuses}
-            cuisines={cuisines}
+            cuisines={cuisines}   
             selectedCampuses={selectedCampuses}
             setSelectedCampuses={setSelectedCampuses}
             selectedCuisine={selectedCuisine}

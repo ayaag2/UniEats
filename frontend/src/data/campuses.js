@@ -27,4 +27,11 @@ export const campuses = [
     shortLabel: "NU Evanston",
     address: "633 Clark St, Evanston, IL 60208",
   },
+  {
+    // Soham
+    id: 4,
+    name: "Northeastern",
+    shortLabel: "NE Chicago",
+    address: "633 Clark St, Evanston, IL 60208",
+  }
 ];

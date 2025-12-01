@@ -5,11 +5,11 @@ import RatingsBadge from "./RatingsBadge";
 function RestaurantCard({ restaurant }) {
   const {
     name,
-    priceRange,
-    thumbnailUrl,
-    walkDistance,
-    takeOutAvailable,
-    deliveryAvailable,
+    pricerange,
+    thumbnailurl,
+    walkdistance,
+    takeoutavailable,
+    deliveryavailable,
     avgRating,
     closestDistance,
     closestCampusName,
@@ -18,7 +18,7 @@ function RestaurantCard({ restaurant }) {
   return (
     <article className="restaurant-card">
       <div className="restaurant-thumb">
-        <img src={thumbnailUrl} alt={name} />
+        <img src={thumbnailurl} alt={name} />
         {avgRating && (
           <div className="restaurant-rating-chip">
             <RatingsBadge rating={avgRating} />
@@ -28,7 +28,7 @@ function RestaurantCard({ restaurant }) {
       <div className="restaurant-body">
         <div className="restaurant-top-row">
           <h3 className="restaurant-name">{name}</h3>
-          <span className="price-pill">{priceRange}</span>
+          <span className="price-pill">{pricerange}</span>
         </div>
         <p className="restaurant-meta">
           {closestCampusName && closestDistance != null ? (
@@ -43,15 +43,15 @@ function RestaurantCard({ restaurant }) {
         </p>
         <p className="restaurant-meta">
           <span>
-            <strong>{walkDistance.toFixed(1)} mi</strong> est. from your campus
+            <strong>{walkdistance.toFixed(1)} mi</strong> est. from your campus
           </span>
         </p>
         <div className="restaurant-services">
-          {takeOutAvailable && <span className="service-tag">Take-out</span>}
-          {deliveryAvailable && (
+          {takeoutavailable && <span className="service-tag">Take-out</span>}
+          {deliveryavailable && (
             <span className="service-tag service-tag-alt">Delivery</span>
           )}
-          {!takeOutAvailable && !deliveryAvailable && (
+          {!takeoutavailable && !deliveryavailable && (
             <span className="service-tag-muted">Dine-in only</span>
           )}
         </div>

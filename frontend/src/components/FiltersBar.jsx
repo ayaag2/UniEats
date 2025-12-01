@@ -54,7 +54,7 @@ function FiltersBar({
                   className={active ? "chip chip-active" : "chip"}
                   onClick={() => toggleCampus(c.id)}
                 >
-                  {c.shortLabel ?? c.name}
+                  {c.shortlabel ?? c.name}
                 </button>
               );
             })}
