@@ -43,7 +43,7 @@ function RestaurantCard({ restaurant }) {
         </p>
         <p className="restaurant-meta">
           <span>
-            <strong>{walkdistance.toFixed(1)} mi</strong> est. from your campus
+            <strong>{(walkdistance ?? 0).toFixed(1)} mi</strong> est. from your campus
           </span>
         </p>
         <div className="restaurant-services">

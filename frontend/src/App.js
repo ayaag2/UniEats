@@ -105,8 +105,8 @@ function App() {
       })
       .filter((r) => {
         if (!takeOutOnly && !deliveryOnly) return true;
-        if (takeOutOnly && !r.takeOutAvailable) return false;
-        if (deliveryOnly && !r.deliveryAvailable) return false;
+        if (takeOutOnly && !r.takeoutavailable) return false;
+        if (deliveryOnly && !r.deliveryavailable) return false;
         return true;
       })
       .filter((r) => {
