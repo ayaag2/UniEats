@@ -19,11 +19,10 @@ def db_retrieve(query, params=()):
         conn = psycopg2.connect(**db_params)
         cursor = conn.cursor()
         cursor.execute(query, params)
-        columns = [desc[0] for desc in cursor.description]   # 🧠 Get column names
+        columns = [desc[0] for desc in cursor.description]
         rows = cursor.fetchall()
         cursor.close()
         conn.close()
-        # Combine each row tuple with column names into dict
         result = [dict(zip(columns, row)) for row in rows]
         return result
     except Exception as e:

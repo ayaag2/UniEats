@@ -4,7 +4,6 @@ from .routes.restaurant_param import restaurants_bp
 def create_app():
     app = Flask(__name__)
 
-    # TODO: configure database connection here (SQLAlchemy + PostgreSQL)
     # app.config.from_object("app.config.Config")
 
     app.register_blueprint(restaurants_bp, url_prefix="/api/restaurants")

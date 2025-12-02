@@ -1,2 +1,1 @@
 -- insertions, updates, deletions for synchronizing database schema
--- Example: create a table for restaurants

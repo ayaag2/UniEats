@@ -1,30 +1,27 @@
--- UNI EATS INITIAL DATA POPULATION (Real Chicago Restaurants & Universities - 30 Restaurants)
--- Focusing strictly on budget-friendly, ethnic/cultural cuisines near major university campuses.
 
--- 1. CUISINE INSERTS (16 items)
---------------------------------------------------------------------------------
+
+-- CUISINE INSERTS
 
 INSERT INTO cuisine (cuisine_id, name) VALUES
 (1, 'American'),
 (2, 'Mexican'),
 (3, 'Mediterranean'),
-(4, 'Italian'),         -- New: Replacing Pizza/Generic Italian-American
+(4, 'Italian'),      
 (5, 'Asian Fusion'),
-(6, 'Japanese'),        -- New: Replacing generic Asian
+(6, 'Japanese'),
 (7, 'Thai'),
 (8, 'Greek'),
-(9, 'Middle Eastern'),  -- New: For Halal/Shawarma spots
+(9, 'Middle Eastern'),
 (10, 'Indian'),
 (11, 'Vietnamese'),
 (12, 'Ethiopian'),
 (13, 'Korean'),
 (14, 'Filipino'),
-(15, 'South American'), -- Includes Cuban, Peruvian, etc.
-(16, 'Caribbean');      -- New (e.g., Jamaican/Haitian)
+(15, 'South American'), 
+(16, 'Caribbean'); 
 
 
--- 2. CAMPUS INSERTS (4 items)
---------------------------------------------------------------------------------
+-- CAMPUS INSERTS
 
 INSERT INTO campus (campus_id, name, address) VALUES
 (1, 'University of Illinois Chicago', '1200 W Harrison St, Chicago, IL 60607'),
@@ -33,8 +30,7 @@ INSERT INTO campus (campus_id, name, address) VALUES
 (4, 'Northwestern University - Evanston', '633 Clark St, Evanston, IL 60208');
 
 
--- 3. RESTAURANT INSERTS (30 items - Ethnic & Budget Focused)
---------------------------------------------------------------------------------
+--RESTAURANT INSERTS
 
 INSERT INTO restaurant (restaurant_id, name, price_range, take_out_available, delivery_available, thumbnail_url, cuisine_id) VALUES
 -- UIC Focus (1) & Loop Crossover
@@ -73,8 +69,7 @@ INSERT INTO restaurant (restaurant_id, name, price_range, take_out_available, de
 (30, 'Lao Sze Chuan', '$10-$20', TRUE, TRUE, 'https://placehold.co/200x150/A52A2A/FFF?text=SICHUAN', 5);
 
 
--- 4. CAMPUS PROXIMITY INSERTS (68 items - All <= 2.0 miles)
---------------------------------------------------------------------------------
+--CAMPUS PROXIMITY INSERTS
 
 INSERT INTO campus_proximity (restaurant_id, campus_id, distance_miles) VALUES
 -- UIC Focused (1)
@@ -113,9 +108,7 @@ INSERT INTO campus_proximity (restaurant_id, campus_id, distance_miles) VALUES
 (30, 4, 1.5), (30, 2, 1.4);
 
 
--- 5. USER RATING INSERTS (90 sample reviews - 3 per restaurant)
---------------------------------------------------------------------------------
-
+--USER RATING INSERTS 
 INSERT INTO user_rating (rating_id, restaurant_id, user_name, user_rating, review_text) VALUES
 -- UIC Focus
 (1, 1, 'Theo', 5, 'Can''t beat the price for authentic Indian food!'),
@@ -213,9 +206,7 @@ INSERT INTO user_rating (rating_id, restaurant_id, user_name, user_rating, revie
 (90, 30, 'Quinn', 4, 'Great spot for a group dinner.');
 
 
--- 6. SEQUENCER ADJUSTMENTS
--- Resetting the SERIAL sequences to the max inserted ID to prevent future conflicts.
---------------------------------------------------------------------------------
+--SEQUENCER ADJUSTMENTS
 
 SELECT setval('cuisine_cuisine_id_seq', (SELECT MAX(cuisine_id) FROM cuisine), true);
 SELECT setval('campus_campus_id_seq', (SELECT MAX(campus_id) FROM campus), true);

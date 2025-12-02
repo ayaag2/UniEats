@@ -31,7 +31,7 @@ function FiltersBar({
         <label className="field-label">Search</label>
         <div className="search-field">
           <span className="search-icon" aria-hidden="true">
-            🔍
+            
           </span>
           <input
             value={search}

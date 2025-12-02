@@ -19,7 +19,7 @@ function App() {
   const [campusProximity, setCampusProximity] = useState([]);
   const [userRatings, setUserRatings] = useState([]);
 
-  // --- Data fetching ---
+  //Data fetching
 
   useEffect(() => {
     fetch("http://localhost:5001/cuisine")
@@ -56,7 +56,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Expects: [{ restaurantid: number, value: number }, ...]
     fetch("http://localhost:5001/userRatings")
       .then((res) => res.json())
       .then((data) => {
@@ -66,14 +65,14 @@ function App() {
       .catch((err) => console.error("Failed to load userRatings:", err));
   }, []);
 
-  // --- Compute extra fields for each restaurant ---
+  //Compute extra fields for each restaurant
 
   const restaurantsWithComputedFields = restaurants.map((r) => {
-    // All proximity records for this restaurant
+    //All proximity records for this restaurant
     const proximity = campusProximity.filter((cp) => String(cp.restaurantid) === String(r.id));
 
 
-    // Ratings + average rating
+    //Ratings + average rating
     const restRatings = userRatings.filter((rt) => rt.restaurantid === r.id);
 
     const avgRating =
@@ -82,7 +81,7 @@ function App() {
         : restRatings.reduce((sum, rt) => sum + Number(rt.value || 0), 0) /
           restRatings.length;
 
-    // Closest campus record
+    //Closest campus record
     const closest =
       proximity.length === 0
         ? null
@@ -90,7 +89,7 @@ function App() {
             Number(cp.distance) < Number(min.distance) ? cp : min
           );
 
-    // Campus name for the closest campus (string-compare IDs to be safe)
+    //Campus name for the closest campus
     const closestCampus =
       closest &&
       campuses.find((c) => String(c.id) === String(closest.campusid));
@@ -104,11 +103,11 @@ function App() {
     };
   });
 
-  // --- Apply filters + sorting ---
+  //Apply filters + sorting
 
   const filtered = restaurantsWithComputedFields
     .filter((r) => {
-      // Search by name or cuisine
+      //Search by name or cuisine
       const query = search.trim().toLowerCase();
       if (!query) return true;
 
@@ -119,19 +118,19 @@ function App() {
       return haystack.includes(query);
     })
     .filter((r) => {
-      // Filter by cuisine dropdown
+      //Filter by cuisine dropdown
       if (selectedCuisine === "all") return true;
       return String(r.cuisineid) === String(selectedCuisine);
     })
     .filter((r) => {
-      // Takeout / delivery filters
+      //Takeout / delivery filters
       if (!takeOutOnly && !deliveryOnly) return true;
       if (takeOutOnly && !r.takeoutavailable) return false;
       if (deliveryOnly && !r.deliveryavailable) return false;
       return true;
     })
     .filter((r) => {
-      // Campus filter USING precomputed r.proximity
+      //Campus filter USING precomputed r.proximity
       if (selectedCampuses.length === 0) return true;
 
       const campusIds = r.proximity.map((cp) => String(cp.campusid));
@@ -142,7 +141,7 @@ function App() {
       if (sortBy === "rating") {
         const ar = a.avgRating ?? 0;
         const br = b.avgRating ?? 0;
-        return br - ar; // highest rating first
+        return br - ar; 
       }
 
       if (sortBy === "price") {
@@ -158,7 +157,7 @@ function App() {
       return ad - bd;
     });
 
-  // --- Render ---
+  //Render
 
   return (
     <div className="app-shell">

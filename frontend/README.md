@@ -1,6 +1,6 @@
 # UNI EATS – Frontend
 
-This is the React single-page frontend for **UNI EATS**, a campus-focused restaurant discovery app.
+This is the React single-page frontend for UNI EATS, a campus-focused restaurant discovery app.
 
 ## Quick start
 

@@ -1,5 +1,4 @@
--- UNI EATS PostgreSQL schema (draft)
--- Entities based on the requirement analysis document.
+-- UniEats PostgreSQL schema
 
 CREATE TABLE cuisine (
     cuisine_id SERIAL PRIMARY KEY,
