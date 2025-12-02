@@ -36,9 +36,11 @@ def db_retrieve(query, params=()):
 @campusProximity_bp.get("/")
 def list_campusProximity():
     mSql = '''
-        SELECT restaurant_id as restaurantid, campus_id as campusid, distance_miles as distance
+        SELECT restaurant_id  AS restaurantid,
+        campus_id AS campusid,
+        distance_miles AS distance
         FROM public.campus_proximity
-        ORDER BY restaurant_id ASC, campus_id ASC 
+        ORDER BY restaurant_id ASC, campus_id ASC;
     '''
     response = db_retrieve(mSql)
     return jsonify(response)

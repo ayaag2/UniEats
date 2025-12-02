@@ -70,7 +70,8 @@ function App() {
 
   const restaurantsWithComputedFields = restaurants.map((r) => {
     // All proximity records for this restaurant
-    const proximity = campusProximity.filter((cp) => cp.restaurantid === r.id);
+    const proximity = campusProximity.filter((cp) => String(cp.restaurantid) === String(r.id));
+
 
     // Ratings + average rating
     const restRatings = userRatings.filter((rt) => rt.restaurantid === r.id);
@@ -86,13 +87,13 @@ function App() {
       proximity.length === 0
         ? null
         : proximity.reduce((min, cp) =>
-            cp.distance < min.distance ? cp : min
+            Number(cp.distance) < Number(min.distance) ? cp : min
           );
 
     // Campus name for the closest campus (string-compare IDs to be safe)
     const closestCampus =
       closest &&
-      campuses.find((c) => String(c.id) === String(closest.campusId));
+      campuses.find((c) => String(c.id) === String(closest.campusid));
 
     return {
       ...r,
@@ -133,7 +134,7 @@ function App() {
       // Campus filter USING precomputed r.proximity
       if (selectedCampuses.length === 0) return true;
 
-      const campusIds = r.proximity.map((cp) => String(cp.campusId));
+      const campusIds = r.proximity.map((cp) => String(cp.campusid));
 
       return selectedCampuses.some((id) => campusIds.includes(String(id)));
     })

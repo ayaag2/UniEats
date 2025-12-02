@@ -37,16 +37,23 @@ def db_retrieve(query, params=()):
 def list_restaurants():
     mSql = '''
         SELECT 
-            restaurant_id as id, 
-            name, 
-            price_range as pricerange, 
-            CAST(0.1 AS double precision) as walkdistance,
-            take_out_available as takeoutavailable, 
-            delivery_available as deliveryavailable, 
-            thumbnail_url as thumbnailurl,
-            cuisine_id as cuisineid
-        FROM public.restaurant
-        ORDER BY restaurant_id ASC 
+        r.restaurant_id AS id,
+        r.name,
+        r.price_range AS pricerange,
+        CAST(d.min_distance AS double precision) AS walkdistance,
+        r.take_out_available AS takeoutavailable,
+        r.delivery_available AS deliveryavailable,
+        r.thumbnail_url AS thumbnailurl,
+        r.cuisine_id AS cuisineid
+        FROM public.restaurant r
+    LEFT JOIN (
+        SELECT restaurant_id, MIN(distance_miles) AS min_distance
+        FROM public.campus_proximity
+        GROUP BY restaurant_id
+    ) d ON r.restaurant_id = d.restaurant_id
+    ORDER BY r.restaurant_id ASC;
+
     '''
     response = db_retrieve(mSql)
     return jsonify(response)
+

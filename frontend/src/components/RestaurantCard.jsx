@@ -15,6 +15,16 @@ function RestaurantCard({ restaurant }) {
     closestCampusName,
   } = restaurant;
 
+  const closestDistanceNum =
+    closestDistance === null || closestDistance === undefined
+      ? null
+      : Number(closestDistance);
+
+  const walkDistanceNum =
+    walkdistance === null || walkdistance === undefined
+      ? 0
+      : Number(walkdistance);
+
   return (
     <article className="restaurant-card">
       <div className="restaurant-thumb">
@@ -25,27 +35,34 @@ function RestaurantCard({ restaurant }) {
           </div>
         )}
       </div>
+
       <div className="restaurant-body">
         <div className="restaurant-top-row">
           <h3 className="restaurant-name">{name}</h3>
           <span className="price-pill">{pricerange}</span>
         </div>
+
         <p className="restaurant-meta">
-          {closestCampusName && closestDistance != null ? (
+          {closestCampusName && Number.isFinite(closestDistanceNum) ? (
             <>
               <span>{closestCampusName}</span>
               <span className="dot">•</span>
-              <span>{closestDistance.toFixed(1)} mi walk</span>
+              <span>{closestDistanceNum.toFixed(1)} mi walk</span>
             </>
           ) : (
             <span>Distance info coming soon</span>
           )}
         </p>
+
         <p className="restaurant-meta">
           <span>
-            <strong>{(walkdistance ?? 0).toFixed(1)} mi</strong> est. from your campus
+            <strong>
+              {Number.isFinite(walkDistanceNum) ? walkDistanceNum.toFixed(1) : "0.0"} mi
+            </strong>{" "}
+            est. from your campus
           </span>
         </p>
+
         <div className="restaurant-services">
           {takeoutavailable && <span className="service-tag">Take-out</span>}
           {deliveryavailable && (
